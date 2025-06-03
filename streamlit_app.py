@@ -42,8 +42,8 @@ upsell = pd_prod_data['UPSELL_PRODUCT_DESC'].iloc[0]
 url = pd_prod_data['FILE_URL'].iloc[0]
 
 ###****** This is  to prinit the url for download.
-st.write(file_name)
-st.write(url)
+#  st.write(file_name)
+#  st.write(url)
 ###****** no need to prinit the url for download.
 
 # display the info on the page
