@@ -5,8 +5,32 @@ import requests
 import pandas as pd
 from PIL import Image
  
+# Set title
+st.title("Zena's Amazing Athleisure Catalog")
+
+# Get Snowflake session
+cnx = st.connection("snowflake")
+session = cnx.session()
+
+# Read the table and select the required column
+my_dataframe = session.table("ZENAS_ATHLEISURE_DB.PRODUCTS.catalog_for_website").select(col('COLOR_OR_STYLE'))
+
+# Convert to pandas for Streamlit
+pd_df = my_dataframe.to_pandas()
+
+# Drop duplicates and NA just to be safe
+pd_colors = pd_df['COLOR_OR_STYLE'].dropna().unique()
+
+# Create drop-down
+option = st.selectbox('Pick a sweatsuit color or style:', pd_colors)
+
+# Display the selection
+st.write("You selected:", option)
+st.stop
+
 
 st.title("Zena's Amazing Athleisure Catalog")
+
 
 cnx = st.connection("snowflake")
 session = cnx.session()
