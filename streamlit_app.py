@@ -17,7 +17,7 @@ my_dataframe = session.table("ZENAS_ATHLEISURE_DB.PRODUCTS.catalog_for_website")
 #Convert the snowpark Datafram to a Padas Datafram so can use the LOC function.
 pd_df=my_dataframe.to_pandas()
 st.dataframe(pd_df)
-#st.stop()                                                                                           
+st.stop()                                                                                           
  
 
 # get a list of colors for a drop list selection
