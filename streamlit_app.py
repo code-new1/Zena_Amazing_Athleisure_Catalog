@@ -16,19 +16,18 @@ my_dataframe = session.table("ZENAS_ATHLEISURE_DB.PRODUCTS.catalog_for_website")
  
 #Convert the snowpark Datafram to a Padas Datafram so can use the LOC function.
 pd_df=my_dataframe.to_pandas()
-st.dataframe(pd_df)
-st.stop()                                                                                           
+#st.dataframe(pd_df)
+#st.stop()                                                                                           
                                                                                             
 # Convert Snowpark DataFrame to a list of values
-fruit_list = [row['FRUIT_NAME'] for row in my_dataframe.collect()]
-
-
 # get a list of colors for a drop list selection
 table_colors = [row['color_or_style'] for row in my_dataframe.collect()]
 pd_colors = table_colors.to_pandas()
 
 # Oyt the list of colors into a drop list selector 
 option = st.selectbox('Pick a sweatsuit color or style:', pd_colors)
+st.write(option)
+st.stop()
 
 # We'll build the image caption now, since we can
 product_caption = 'Our warm, comfortable, ' + option + ' sweatsuit!'
