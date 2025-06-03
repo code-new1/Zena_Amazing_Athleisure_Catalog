@@ -9,8 +9,21 @@ st.title("Zena's Amazing Athleisure Catalog")
 
 session = get_active_session()
 
+
+cnx = st.connection("snowflake")
+session = cnx.session()
+my_dataframe = session.table("ZENAS_ATHLEISURE_DB.PRODUCTS.catalog_for_website").select(col('color_or_style'),col('SEARCH_ON'))
+#st.dataframe(data=my_dataframe, use_container_width=True)
+#st.stop()
+ 
+#Convert the snowpark Datafram to a Padas Datafram so can use the LOC function.
+pd_df=my_dataframe.to_pandas()
+st.dataframe(pd_df)
+#st.stop()                                                                                           
+ 
+
 # get a list of colors for a drop list selection
-table_colors = session.sql("select color_or_style from catalog_for_website")
+table_colors = [row['color_or_style'] for row in my_dataframe.collect()]
 pd_colors = table_colors.to_pandas()
 
 # Oyt the list of colors into a drop list selector 
