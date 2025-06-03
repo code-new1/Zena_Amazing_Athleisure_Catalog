@@ -27,18 +27,6 @@ option = st.selectbox('Pick a sweatsuit color or style:', pd_colors)
 # Display the selection
 st.write("You selected:", option)
 
-                                                                             
-                                                                                            
-# Convert Snowpark DataFrame to a list of values
-# get a list of colors for a drop list selection
-table_colors = [row['color_or_style'] for row in my_dataframe.collect()]
- 
-
-# Oyt the list of colors into a drop list selector 
-option = st.selectbox('Pick a sweatsuit color or style2:', table_colors)
-st.write(option)
-st.stop()
-
 # We'll build the image caption now, since we can
 product_caption = 'Our warm, comfortable, ' + option + ' sweatsuit!'
 
