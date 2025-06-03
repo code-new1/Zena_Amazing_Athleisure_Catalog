@@ -26,30 +26,16 @@ option = st.selectbox('Pick a sweatsuit color or style:', pd_colors)
 
 # Display the selection
 st.write("You selected:", option)
-st.stop
 
-
-st.title("Zena's Amazing Athleisure Catalog")
-
-
-cnx = st.connection("snowflake")
-session = cnx.session()
-my_dataframe = session.table("ZENAS_ATHLEISURE_DB.PRODUCTS.catalog_for_website").select(col('color_or_style'))
-#st.dataframe(data=my_dataframe, use_container_width=True)
-#st.stop()
- 
-#Convert the snowpark Datafram to a Padas Datafram so can use the LOC function.
-pd_df=my_dataframe.to_pandas()
-#st.dataframe(pd_df)
-#st.stop()                                                                                           
+                                                                             
                                                                                             
 # Convert Snowpark DataFrame to a list of values
 # get a list of colors for a drop list selection
 table_colors = [row['color_or_style'] for row in my_dataframe.collect()]
-pd_colors = table_colors.to_pandas()
+ 
 
 # Oyt the list of colors into a drop list selector 
-option = st.selectbox('Pick a sweatsuit color or style:', pd_colors)
+option = st.selectbox('Pick a sweatsuit color or style2:', table_colors)
 st.write(option)
 st.stop()
 
