@@ -12,7 +12,7 @@ cnx = st.connection("snowflake")
 session = cnx.session()
 my_dataframe = session.table("ZENAS_ATHLEISURE_DB.PRODUCTS.catalog_for_website").select(col('color_or_style'))
 #st.dataframe(data=my_dataframe, use_container_width=True)
-#st.stop()
+st.stop()
  
 #Convert the snowpark Datafram to a Padas Datafram so can use the LOC function.
 pd_df=my_dataframe.to_pandas()
